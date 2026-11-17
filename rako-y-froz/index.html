@@ -109,6 +109,25 @@ h2{font-family:var(--f-wide);font-weight:900;font-size:clamp(26px,5.4vw,56px);li
 .flink b{font-family:var(--f-wide);font-weight:700;font-size:12px;text-transform:uppercase;overflow-wrap:anywhere;text-align:right}
 .flink:hover b{color:var(--froz)}.fcard.r .flink:hover b{color:var(--rako)}
 
+/* youtube en rojo y azul */
+#youtube{position:relative;isolation:isolate;overflow:hidden}
+#youtube::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(#000 0%,transparent 14%,transparent 86%,#000 100%),radial-gradient(48% 42% at 0% 28%,rgba(23,71,214,.5),transparent 70%),radial-gradient(48% 42% at 100% 72%,rgba(255,45,55,.42),transparent 70%),linear-gradient(rgba(0,0,0,.62),rgba(0,0,0,.62))}
+#youtube::after{content:"";position:absolute;inset:-4%;z-index:-2;background:url(humo.png) center/cover no-repeat;opacity:.4;filter:blur(4px) saturate(1.2)}
+#youtube h2{background:linear-gradient(90deg,var(--froz),#fff 50%,var(--rako));-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent}
+.cf,.cr{font-style:normal}.cf{color:var(--froz)}.cr{color:var(--rako)}
+.ytinfo .card{background:rgba(0,0,0,.55)}
+.ytinfo .card:nth-child(1){border-color:var(--froz);box-shadow:0 0 30px rgba(23,71,214,.45)}
+.ytinfo .card:nth-child(2){border:1px solid transparent;background:linear-gradient(#050507,#050507) padding-box,linear-gradient(135deg,var(--froz),var(--rako)) border-box}
+.ytinfo .card:nth-child(3){border-color:var(--rako);box-shadow:0 0 30px rgba(255,59,59,.4)}
+.ytinfo .card:nth-child(1) span{color:var(--froz)}.ytinfo .card:nth-child(3) span{color:var(--rako)}
+.tags span:nth-child(odd){border-color:var(--froz);color:var(--froz)}
+.tags span:nth-child(even){border-color:var(--rako);color:var(--rako)}
+#youtube .row{border-image:linear-gradient(90deg,var(--froz),var(--rako)) 1}
+#youtube .age{color:var(--froz)}
+#youtube .row:nth-child(even) .age{color:var(--rako)}
+#youtube .row:nth-child(even) .pill{background:var(--froz)}
+#youtube .vhead{color:#fff}
+
 /* fotos */
 .gallery{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;max-width:1116px;margin:0 auto}
 .ph{display:block;width:100%;margin:0;padding:0;aspect-ratio:4/5;border:1px solid var(--line-soft);border-radius:4px;overflow:hidden;background:#000;cursor:zoom-in}
@@ -216,7 +235,7 @@ footer ul a:hover{color:var(--froz)}
     <div class="tags"><span>Trap</span><span>Hiphop</span><span>TrapArgento</span></div>
   </div>
   <div class="ytinfo" style="margin-top:36px;margin-bottom:0">
-    <div class="card"><strong>Froz y RakoBoy</strong><span>Canal</span></div>
+    <div class="card"><strong><i class="cf">Froz</i> y <i class="cr">RakoBoy</i></strong><span>Canal</span></div>
     <div class="card"><strong>1,2 mil</strong><span>Suscriptores</span></div>
     <div class="card"><strong>82</strong><span>Videos</span></div>
   </div>
