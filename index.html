@@ -170,9 +170,15 @@ h2{font-family:var(--f-wide);font-weight:900;font-size:clamp(26px,5.4vw,56px);li
 .row.trk.on > span:nth-child(2){color:var(--froz)}
 
 /* próximamente */
-.soon{position:relative;isolation:isolate;overflow:hidden;text-align:center;padding-block:68px}
-.soon::before{content:"";position:absolute;inset:-4%;z-index:-2;background:url(humo.png) center/cover no-repeat;filter:blur(4px) saturate(1.2);opacity:.55}
-.soon::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(#000 0%,rgba(0,0,0,.6) 14%,rgba(0,0,0,0) 34%,rgba(0,0,0,0) 76%,rgba(0,0,0,.7) 90%,#000 100%),linear-gradient(rgba(0,0,0,.5),rgba(0,0,0,.75))}
+.soon{position:fixed;inset:0;z-index:100;overflow:auto;isolation:isolate;text-align:center;background:#000;padding:76px max(16px,env(safe-area-inset-left,0px)) 56px}
+.soon:not([hidden]){display:grid;place-items:center}
+.soon .close{position:fixed;top:calc(16px + env(safe-area-inset-top,0px));right:max(16px,env(safe-area-inset-right,0px));z-index:2;width:48px;height:48px;border-radius:50%;border:1px solid var(--ink);background:rgba(0,0,0,.5);color:var(--ink);font-size:20px;line-height:1;display:grid;place-items:center}
+.soon .close:hover{background:var(--ink);color:#000}
+.navcta{display:flex;align-items:center;gap:10px}
+.pill.soonbtn{border:1px solid transparent;color:#fff;background:linear-gradient(#000,#000) padding-box,linear-gradient(90deg,var(--froz),var(--rako)) border-box}
+.pill.soonbtn:hover{filter:brightness(1.3)}
+.soon::before{content:"";position:fixed;inset:-4%;z-index:-2;background:url(humo.png) center/cover no-repeat;filter:blur(4px) saturate(1.2);opacity:.55}
+.soon::after{content:"";position:fixed;inset:0;z-index:-1;background:linear-gradient(rgba(0,0,0,.45),rgba(0,0,0,.78))}
 .soon .top{margin:0;font-family:var(--f-wide);font-weight:500;font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:#d6d6de}
 .soon h2{font-size:clamp(26px,6vw,64px);line-height:1.05;color:#fff;margin:16px 0 32px;text-shadow:-3px 0 rgba(255,59,59,.65),3px 0 rgba(143,227,255,.6)}
 .soon .cols{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr) minmax(0,1fr);gap:30px;align-items:center;max-width:1000px;margin:0 auto 34px}
@@ -185,7 +191,11 @@ h2{font-family:var(--f-wide);font-weight:900;font-size:clamp(26px,5.4vw,56px);li
 .soon .bar{height:14px;border-radius:2px;background:var(--froz)}
 .soon .trk:nth-child(even) .bar{background:var(--rako)}
 @media (max-width:640px){
-  .soon{padding-block:52px}
+  .soon{padding-top:72px;padding-bottom:40px}
+  .navcta{gap:6px}
+  .navcta .pill{padding:9px 11px;font-size:9px;letter-spacing:.04em}
+  nav .wrap{gap:8px}
+  nav .logo{font-size:12px}
   .soon .cols{grid-template-columns:1fr 1fr;gap:22px 16px}
   .soon .hid{grid-column:1/-1;order:3}
   .soon .nm.l{text-align:left;order:1}.soon .nm.r{text-align:right;order:2}
@@ -236,7 +246,10 @@ footer ul a:hover{color:var(--froz)}
     <li><a href="#fotos">Fotos</a></li>
     <li><a href="#redes">Redes</a></li>
   </ul>
-  <a class="pill" href="https://open.spotify.com/intl-es/album/5TaGIxILND55SL4O99SYcC" target="_blank" rel="noopener">Escuchar</a>
+  <div class="navcta">
+    <a class="pill soonbtn" href="#proximamente">Próximamente</a>
+    <a class="pill" href="https://open.spotify.com/intl-es/album/5TaGIxILND55SL4O99SYcC" target="_blank" rel="noopener">Escuchar</a>
+  </div>
 </div></nav>
 
 <header class="hero" id="top">
@@ -325,7 +338,8 @@ footer ul a:hover{color:var(--froz)}
     </div>
   </div>
 </div></section>
-<section class="soon" id="proximamente">
+<section class="soon" id="proximamente" hidden role="dialog" aria-modal="true" aria-label="Próximamente">
+  <button class="close" type="button" aria-label="Cerrar">✕</button>
   <div class="wrap">
     <p class="top">684 Sousai Label presents</p>
     <h2>Something is coming</h2>
@@ -409,6 +423,30 @@ footer ul a:hover{color:var(--froz)}
   audio.addEventListener('ended',function(){var n=cur;stop();cur=-1;if(n+1<rows.length)play(n+1);});
   audio.addEventListener('error',fail);
   rows.forEach(function(r,i){r.querySelector('.play').addEventListener('click',function(){play(i);});});
+})();
+</script>
+
+<script>
+(function(){
+  var s=document.getElementById('proximamente'),x=s.querySelector('.close'),last=null;
+  function open(){
+    if(!s.hidden)return;
+    last=document.activeElement;s.hidden=false;document.body.style.overflow='hidden';x.focus();
+  }
+  function close(){
+    if(s.hidden)return;
+    s.hidden=true;document.body.style.overflow='';
+    try{if(location.hash==='#proximamente')history.replaceState(null,'',location.pathname+location.search);}catch(e){}
+    try{if(last&&last.focus)last.focus();}catch(e){}
+  }
+  function sync(){if(location.hash==='#proximamente')open();}
+  [].forEach.call(document.querySelectorAll('a[href="#proximamente"]'),function(a){a.addEventListener('click',open);});
+  [].forEach.call(s.querySelectorAll('a[href="#redes"]'),function(a){a.addEventListener('click',close);});
+  x.addEventListener('click',close);
+  s.addEventListener('click',function(e){if(e.target===s)close();});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')close();});
+  window.addEventListener('hashchange',sync);
+  sync();
 })();
 </script>
 
