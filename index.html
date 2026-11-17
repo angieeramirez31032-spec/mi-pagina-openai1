@@ -45,7 +45,7 @@ nav ul a.on{color:var(--rako)}
 .hero::before{content:"";position:absolute;inset:0;z-index:-2;background:radial-gradient(55% 85% at 14% 55%,rgba(23,71,214,.5),transparent 72%),radial-gradient(55% 85% at 86% 55%,rgba(255,45,55,.42),transparent 72%)}
 .hero::after{content:"";position:absolute;inset:auto 0 0;height:45%;z-index:-1;background:linear-gradient(transparent,#000)}
 .hero .face{position:absolute;left:50%;top:0;height:100%;width:auto;max-width:none;transform:translateX(-50%) scaleX(-1);z-index:-1;filter:brightness(.82) contrast(1.05);-webkit-mask-image:radial-gradient(ellipse 50% 56% at 50% 44%,#000 52%,transparent 100%);mask-image:radial-gradient(ellipse 50% 56% at 50% 44%,#000 52%,transparent 100%)}
-.hero h1{margin:0;font-family:var(--f-wide);font-weight:900;font-size:clamp(34px,10.5vw,148px);line-height:1;text-transform:uppercase;letter-spacing:-.01em;padding:0 max(16px,env(safe-area-inset-left,0px),3vw) 30px;min-width:0}
+.hero h1{margin:0;font-family:var(--f-wide);font-weight:900;font-size:clamp(28px,6.7vw,96px);line-height:1;text-transform:uppercase;letter-spacing:-.01em;padding:0 max(16px,env(safe-area-inset-left,0px),3vw) 30px;min-width:0}
 .hero h1 small{display:block;font-family:var(--f-wide);font-weight:500;font-size:clamp(9px,1vw,13px);letter-spacing:.3em;margin-bottom:12px;color:var(--muted)}
 .hero .f{color:var(--froz);text-align:left;text-shadow:0 0 40px rgba(0,0,0,.85),0 0 60px rgba(23,71,214,.7)}
 .hero .r{color:var(--rako);text-align:right;text-shadow:0 0 40px rgba(0,0,0,.85),0 0 60px rgba(255,59,59,.6)}
@@ -198,6 +198,9 @@ h2{font-family:var(--f-wide);font-weight:900;font-size:clamp(26px,5.4vw,56px);li
   nav .wrap{gap:8px}
   nav .logo{font-size:12px}
 }
+@media (max-width:640px){
+  .hero h1{font-size:clamp(16px,5.6vw,40px)}
+}
 @media (max-width:480px){
   nav .logo{white-space:normal;max-width:92px;line-height:1.15}
   footer .logo{font-size:22px;white-space:normal;max-width:100%}
@@ -258,7 +261,7 @@ footer ul a:hover{color:var(--froz)}
 <header class="hero" id="top">
   <img class="face" src="duo2.jpg" alt="Froz y RakoBoy sentados en un estudio, uno con ropa roja metalizada y el otro con ropa azul">
   <h1 class="f"><small>@froz.hielo</small>Froz</h1>
-  <h1 class="r"><small>@rakoboyatusabe</small>Rako</h1>
+  <h1 class="r"><small>@rakoboyatusabe</small>RakoBoy</h1>
 </header>
 
 
