@@ -61,7 +61,7 @@ h2{font-family:var(--f-wide);font-weight:900;font-size:clamp(26px,5.4vw,56px);li
 .row:first-child{border-top:1px solid var(--line)}
 .row > *{min-width:0;overflow-wrap:anywhere}
 .row .mut{color:var(--muted)}
-.row.trk{grid-template-columns:34px minmax(0,1.3fr) minmax(0,1fr) 56px}
+.row.trk{grid-template-columns:40px minmax(0,1.3fr) minmax(0,1fr) 56px}
 .row.vid{grid-template-columns:130px minmax(0,1fr) 110px}
 .row.vid .pill{text-align:center;padding:10px 0}
 .badge{display:inline-block;font-family:var(--f-body);font-size:10px;font-weight:600;background:#2a2a30;color:#ddd;border-radius:3px;padding:0 5px;margin-right:6px;vertical-align:1px}
@@ -159,6 +159,16 @@ h2{font-family:var(--f-wide);font-weight:900;font-size:clamp(26px,5.4vw,56px);li
 .fcard.r .flink[href*="spotify"] span::before{--g:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='10' fill='%23ff3b3b'/%3E%3Cpath d='M6.5 9.2c3.6-1 7.6-.7 10.8 1.1M7 12.4c3-.8 6.2-.5 8.8 1M7.6 15.4c2.4-.6 4.7-.4 6.8.8' fill='none' stroke='%23000' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E")}
 .fcard.r .flink[href*="tiktok"] span::before{--g:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M14 4v10.2a3.2 3.2 0 1 1-3.2-3.2' fill='none' stroke='%23ff3b3b' stroke-width='2' stroke-linecap='round'/%3E%3Cpath d='M14 4c.4 2.4 1.9 3.9 4.3 4.1' fill='none' stroke='%23ff3b3b' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E")}
 
+/* preview de canciones */
+.play{width:36px;height:36px;border-radius:50%;border:1px solid var(--ink);background:transparent;display:grid;place-items:center;padding:0;color:var(--ink)}
+.play:hover{background:var(--ink);color:#000}
+.play svg{width:14px;height:14px;fill:currentColor}
+.play .pa{display:none}
+.row.trk{background:linear-gradient(90deg,var(--froz),var(--rako)) left bottom/calc(var(--p,0)*100%) 3px no-repeat}
+.row.trk.on .play{background:var(--rako);border-color:var(--rako);color:#000}
+.row.trk.on .play .pl{display:none}.row.trk.on .play .pa{display:block}
+.row.trk.on > span:nth-child(2){color:var(--froz)}
+
 /* footer */
 footer{border-top:1px solid var(--line);padding-block:40px}
 footer .wrap{display:flex;flex-wrap:wrap;gap:24px 40px;justify-content:space-between;align-items:center}
@@ -177,7 +187,7 @@ footer ul a:hover{color:var(--froz)}
   .row.vid .age{grid-column:1/-1;order:-1}
   .row.vid .views{display:none}
   .row.vid .pill{min-width:84px;padding:10px 18px}
-  .row.trk{grid-template-columns:28px minmax(0,1fr) 48px}
+  .row.trk{grid-template-columns:40px minmax(0,1fr) 48px}
   .row.trk .by{display:none}
 }
 @media (max-width:640px){
@@ -230,15 +240,16 @@ footer ul a:hover{color:var(--froz)}
     </div>
   </div>
   <ol class="rows">
-    <li class="row trk"><span class="mut num">1</span><span>Calor &amp; Hielo</span><span class="by mut"><span class="badge">E</span>Froz, RakoBoy, 684</span><span class="num mut">3:02</span></li>
-    <li class="row trk"><span class="mut num">2</span><span>Anochece</span><span class="by mut"><span class="badge">E</span>Froz, RakoBoy, 684</span><span class="num mut">2:42</span></li>
-    <li class="row trk"><span class="mut num">3</span><span>Azul &amp; Rojo</span><span class="by mut"><span class="badge">E</span>Froz, RakoBoy, 684</span><span class="num mut">2:49</span></li>
-    <li class="row trk"><span class="mut num">4</span><span>Tan Frío Que Quema - Remix</span><span class="by mut"><span class="badge">E</span>Froz, RakoBoy, 684, de la Canal Lugo Julián</span><span class="num mut">2:55</span></li>
-    <li class="row trk"><span class="mut num">5</span><span>Pogo &amp; Oro</span><span class="by mut"><span class="badge">E</span>Froz, RakoBoy, 684</span><span class="num mut">3:05</span></li>
-    <li class="row trk"><span class="mut num">6</span><span>Amanece</span><span class="by mut"><span class="badge">E</span>Froz, RakoBoy, 684</span><span class="num mut">1:54</span></li>
-    <li class="row trk"><span class="mut num">7</span><span>Bonito &amp; Maldito</span><span class="by mut"><span class="badge">E</span>Froz, RakoBoy, 684</span><span class="num mut">3:00</span></li>
-    <li class="row trk"><span class="mut num">8</span><span>Veo Dos</span><span class="by mut"><span class="badge">E</span>Froz, RakoBoy, 684</span><span class="num mut">2:37</span></li>
+    <li class="row trk" data-src="https://p.scdn.co/mp3-preview/fc0810f4d5719765ad0c90af6a9938c0319e9195"><button class="play" type="button" aria-label="Escuchar preview de Calor &amp; Hielo"><svg class='pl' viewBox='0 0 24 24' aria-hidden='true'><path d='M8 5v14l11-7z'/></svg><svg class='pa' viewBox='0 0 24 24' aria-hidden='true'><path d='M7 5h4v14H7zM13 5h4v14h-4z'/></svg></button><span>Calor &amp; Hielo</span><span class="by mut"><span class="badge">E</span>Froz, RakoBoy, 684</span><span class="num mut">3:02</span></li>
+    <li class="row trk" data-src="https://p.scdn.co/mp3-preview/1a5fb2bd60302b81fc449c710ef418ef5e0eb145"><button class="play" type="button" aria-label="Escuchar preview de Anochece"><svg class='pl' viewBox='0 0 24 24' aria-hidden='true'><path d='M8 5v14l11-7z'/></svg><svg class='pa' viewBox='0 0 24 24' aria-hidden='true'><path d='M7 5h4v14H7zM13 5h4v14h-4z'/></svg></button><span>Anochece</span><span class="by mut"><span class="badge">E</span>Froz, RakoBoy, 684</span><span class="num mut">2:42</span></li>
+    <li class="row trk" data-src="https://p.scdn.co/mp3-preview/3827cc17ba102f4d56002611e4f890b2984e5fb9"><button class="play" type="button" aria-label="Escuchar preview de Azul &amp; Rojo"><svg class='pl' viewBox='0 0 24 24' aria-hidden='true'><path d='M8 5v14l11-7z'/></svg><svg class='pa' viewBox='0 0 24 24' aria-hidden='true'><path d='M7 5h4v14H7zM13 5h4v14h-4z'/></svg></button><span>Azul &amp; Rojo</span><span class="by mut"><span class="badge">E</span>Froz, RakoBoy, 684</span><span class="num mut">2:49</span></li>
+    <li class="row trk" data-src="https://p.scdn.co/mp3-preview/069a239652fa8e60aef8a835696d555659f1f678"><button class="play" type="button" aria-label="Escuchar preview de Tan Frío Que Quema - Remix"><svg class='pl' viewBox='0 0 24 24' aria-hidden='true'><path d='M8 5v14l11-7z'/></svg><svg class='pa' viewBox='0 0 24 24' aria-hidden='true'><path d='M7 5h4v14H7zM13 5h4v14h-4z'/></svg></button><span>Tan Frío Que Quema - Remix</span><span class="by mut"><span class="badge">E</span>Froz, RakoBoy, 684, de la Canal Lugo Julián</span><span class="num mut">2:55</span></li>
+    <li class="row trk" data-src="https://p.scdn.co/mp3-preview/d4abf1e7e11d305f5b32d1f2ed022142cd124dc3"><button class="play" type="button" aria-label="Escuchar preview de Pogo &amp; Oro"><svg class='pl' viewBox='0 0 24 24' aria-hidden='true'><path d='M8 5v14l11-7z'/></svg><svg class='pa' viewBox='0 0 24 24' aria-hidden='true'><path d='M7 5h4v14H7zM13 5h4v14h-4z'/></svg></button><span>Pogo &amp; Oro</span><span class="by mut"><span class="badge">E</span>Froz, RakoBoy, 684</span><span class="num mut">3:05</span></li>
+    <li class="row trk" data-src="https://p.scdn.co/mp3-preview/e75c518e510353e2feb1e7f423f92f914e59ce95"><button class="play" type="button" aria-label="Escuchar preview de Amanece"><svg class='pl' viewBox='0 0 24 24' aria-hidden='true'><path d='M8 5v14l11-7z'/></svg><svg class='pa' viewBox='0 0 24 24' aria-hidden='true'><path d='M7 5h4v14H7zM13 5h4v14h-4z'/></svg></button><span>Amanece</span><span class="by mut"><span class="badge">E</span>Froz, RakoBoy, 684</span><span class="num mut">1:54</span></li>
+    <li class="row trk" data-src="https://p.scdn.co/mp3-preview/55b0a6b0a194b38eee49f8ae94680354534705f3"><button class="play" type="button" aria-label="Escuchar preview de Bonito &amp; Maldito"><svg class='pl' viewBox='0 0 24 24' aria-hidden='true'><path d='M8 5v14l11-7z'/></svg><svg class='pa' viewBox='0 0 24 24' aria-hidden='true'><path d='M7 5h4v14H7zM13 5h4v14h-4z'/></svg></button><span>Bonito &amp; Maldito</span><span class="by mut"><span class="badge">E</span>Froz, RakoBoy, 684</span><span class="num mut">3:00</span></li>
+    <li class="row trk" data-src="https://p.scdn.co/mp3-preview/cf2a844e1300ab526b2b4a4ab3ae3d321a6198f8"><button class="play" type="button" aria-label="Escuchar preview de Veo Dos"><svg class='pl' viewBox='0 0 24 24' aria-hidden='true'><path d='M8 5v14l11-7z'/></svg><svg class='pa' viewBox='0 0 24 24' aria-hidden='true'><path d='M7 5h4v14H7zM13 5h4v14h-4z'/></svg></button><span>Veo Dos</span><span class="by mut"><span class="badge">E</span>Froz, RakoBoy, 684</span><span class="num mut">2:37</span></li>
   </ol>
+  <p class="note" id="prevnote">Tocá el botón de cada canción para escuchar una preview de 30 segundos. El álbum completo está en Spotify.</p>
 </div></section>
 
 <section id="youtube"><div class="wrap">
@@ -334,6 +345,29 @@ footer ul a:hover{color:var(--froz)}
     if(e.key==='ArrowLeft')show(cur-1);
     if(e.key==='ArrowRight')show(cur+1);
   });
+})();
+</script>
+
+<script>
+(function(){
+  var rows=[].slice.call(document.querySelectorAll('.row.trk[data-src]'));
+  var note=document.getElementById('prevnote');
+  var audio=new Audio();audio.preload='none';
+  var cur=-1;
+  function stop(){rows.forEach(function(r){r.classList.remove('on');r.style.removeProperty('--p');});}
+  function fail(){stop();cur=-1;audio.pause();note.textContent='No se pudo reproducir la preview acá. Escuchá el álbum completo en Spotify.';}
+  function play(i){
+    if(cur===i&&!audio.paused){audio.pause();return;}
+    if(cur!==i){stop();cur=i;audio.src=rows[i].dataset.src;}
+    rows[i].classList.add('on');
+    var p=audio.play();if(p&&p.catch)p.catch(fail);
+  }
+  audio.addEventListener('pause',function(){if(cur>=0)rows[cur].classList.remove('on');});
+  audio.addEventListener('play',function(){if(cur>=0)rows[cur].classList.add('on');});
+  audio.addEventListener('timeupdate',function(){if(cur>=0&&audio.duration)rows[cur].style.setProperty('--p',audio.currentTime/audio.duration);});
+  audio.addEventListener('ended',function(){var n=cur;stop();cur=-1;if(n+1<rows.length)play(n+1);});
+  audio.addEventListener('error',fail);
+  rows.forEach(function(r,i){r.querySelector('.play').addEventListener('click',function(){play(i);});});
 })();
 </script>
 
